@@ -1,0 +1,11 @@
+0513b144b53cbdcbc36c210cec222476 *DESCRIPTION
+e06462c7462b0d37160b45fc4879e0ed *NAMESPACE
+778f67b1f2776a588c747dfdd5cb04bd *NEWS
+ca380b85cffe57e7881b492afbfb899b *R/compose.R
+12b764b3fab666a1ee17c341d179bee5 *R/dostats.R
+154606727eea542936536d3e1563128e *R/wargs.R
+0632a9c34f00a5524e04a7417e7af879 *inst/ex_dostats.R
+247c829e441fad4c3049266f85972ee0 *man/class.stats.Rd
+7cb4c3de427bcf94a55fe73f54500f8e *man/compose.Rd
+7d47aa25bf442b007898a2f9520c7b2a *man/dostats.Rd
+f899a3f53a63d4b346cf385db3ded940 *man/wargs.Rd
