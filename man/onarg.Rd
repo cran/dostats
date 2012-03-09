@@ -1,0 +1,30 @@
+\name{onarg}
+\alias{onarg}
+\title{change first argument of a function}
+\usage{
+  onarg(f, arg)
+}
+\arguments{
+  \item{f}{the function}
+
+  \item{arg}{the arg to be called as the first argument}
+}
+\value{
+  a function that calls \code{f} with \code{arg} as the
+  first argument.
+}
+\description{
+  change first argument of a function
+}
+\examples{
+formals(runif)
+onarg(runif, 'max')(1:10, 1)
+onarg(runif, 'max')(1:10, 10)
+#another version of contains
+onarg(`\%in\%`, 'table')(letters, 'y')
+}
+\seealso{
+  \code{\link{wargs}}, \code{\link{dostats}}, and
+  \code{\link{apply}}
+}
+
