@@ -2,12 +2,14 @@
 \alias{wargs}
 \title{Call with arguments}
 \usage{
-  wargs(f, ...)
+  wargs(f, ..., envir = parent.frame())
 }
 \arguments{
   \item{f}{a function}
 
   \item{...}{extra arguments}
+
+  \item{envir}{the environment for the function.}
 }
 \value{
   a function that takes 1 argument and calls f with the
@@ -17,7 +19,7 @@
   Call with arguments
 }
 \examples{
-mean2 <- wargs(mean, na.rm=T)
+mean2 <- wargs(mean, na.rm=TRUE)
 }
 \keyword{misc}
 \keyword{utilities,}

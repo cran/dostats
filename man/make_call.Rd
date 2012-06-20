@@ -1,0 +1,25 @@
+\name{make_call}
+\alias{make_call}
+\title{Make a call with extra arguments incorporated into call.}
+\usage{
+  make_call(args, ..., what, quote = F,
+    envir = parent.frame())
+}
+\arguments{
+  \item{args}{a list of arguments}
+
+  \item{...}{extra arguments to be incorporated into args}
+
+  \item{what}{the function to execute}
+
+  \item{quote}{should the arguments be quoted}
+
+  \item{envir}{the environment to call the function in}
+}
+\description{
+  Usefull for using with plyr functions
+}
+\seealso{
+  \code{\link{do.call}} which this function wraps.
+}
+

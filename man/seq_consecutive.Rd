@@ -14,6 +14,7 @@
   an integer vector.
 }
 \description{
-  compute an indicator to group consecutive values
+  computes a vector that changes every time the element is
+  different from the previous.
 }
 

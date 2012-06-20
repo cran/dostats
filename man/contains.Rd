@@ -1,6 +1,6 @@
 \name{\%contains\%}
-\alias{\%contains\%}
 \alias{contains}
+\alias{\%contains\%}
 \title{Does a table contain a value}
 \usage{
   table \%contains\% y
