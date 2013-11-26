@@ -6,18 +6,15 @@
     after = length(x))
 }
 \arguments{
-  \item{x}{a vector}
+  \item{x}{vector}
 
-  \item{l}{the length desired}
+  \item{l}{length}
 
-  \item{with}{the item to append to achieve the desired
-  length}
+  \item{with}{What to fill with}
 
-  \item{after}{where to insert the items.}
+  \item{after}{where to insert}
 }
 \description{
-  Extend a vector to the desired length by
-  appending/inserting \code{with} at \code{after},
-  repeating \code{with} as necessary.
+  Fill vector to length with a specified value
 }
 

@@ -1,22 +1,26 @@
 \name{wargs}
 \alias{wargs}
-\title{Call with arguments}
+\title{Call with arguments.}
 \usage{
-  wargs(f, ..., envir = parent.frame())
+  wargs(f, ..., args = pairlist(...),
+    envir = parent.frame())
 }
 \arguments{
   \item{f}{a function}
 
   \item{...}{extra arguments}
 
-  \item{envir}{the environment for the function.}
+  \item{args}{alternate way to provide arguments as a
+  pairlist.}
+
+  \item{envir}{environment to use for the function.}
 }
 \value{
   a function that takes 1 argument and calls f with the
   single argument and the additional \code{...} appended.
 }
 \description{
-  Call with arguments
+  Call with arguments.
 }
 \examples{
 mean2 <- wargs(mean, na.rm=TRUE)

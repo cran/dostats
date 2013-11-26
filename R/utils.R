@@ -26,7 +26,6 @@
 first <- wargs(head, n=1)
 last <- wargs(tail, n=1)
 
-#' @import plyr
 is_uniform <- function(x){
     all(laply(x, isTRUE %.% all.equal, x[[1]]))
 }
@@ -34,29 +33,14 @@ is_uniform <- function(x){
 #' List rows of a data frame in a list.
 #' 
 #' @param d a data.frame
-#' @param keep.attr should the split attributes be kept.
 #' 
 #' @export
-listrows <- function(d, keep.attr=FALSE){
-    x <- mlply(d, data.frame)
-    if(keep.attr) x
-    else structure(x, split_type=NULL, split_labels=NULL)
-}
+listrows <- function(d){mlply(d, list)}
 
 #' Make a helper ID counter
 #' 
-#'  This creates an object that counts how many ID's have been created.
-#'  
-#'  The object is a list of three elements, each a function.
-#'  \enumerate{
-#'      \item \code{$new(n=1)} get the next \code{n} id numbers.  
-#'      \item \code{$reset(at=0)} reset the the chain to \code{at}, 
-#'                                next ID number will be \code{at+!}.
-#'      \item \code{$curr()} what was the last ID number issued.
-#'  }
+#' @param startat where to start counting
 #' 
-#' @param startat The base number to start counting at, ie. th enumber before 
-#'                the first ID. 
 #' @export
 make_new_id <- function(startat=0){
     ..next_id <- startat
@@ -105,13 +89,10 @@ me<- function(){
 
 #' Fill vector to length with a specified value
 #' 
-#' Extend a vector to the desired length by appending/inserting \code{with} 
-#' at \code{after}, repeating \code{with} as necessary.
-#' 
-#' @param x a vector
-#' @param l the length desired
-#' @param with the item to append to achieve the desired length
-#' @param after where to insert the items.
+#' @param x vector
+#' @param l length
+#' @param with What to fill with
+#' @param after where to insert
 #' 
 #' @export
 fill_v <- function(x, l=length(x), with=last(x), after=length(x)){

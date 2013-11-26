@@ -1,15 +1,13 @@
 \name{redirf}
 \alias{redirf}
-\title{create a function that redirects to the named function.}
+\title{Create a function that redirects to the named function.}
 \usage{
-  redirf(f, envir = parent.frame(), only... = FALSE)
+  redirf(f, envir = parent.frame())
 }
 \arguments{
   \item{f}{a function to wrap a call around}
 
-  \item{envir}{the environment to use for the function}
-
-  \item{only...}{wrap only with a ... argument}
+  \item{envir}{environment to use for the function.}
 }
 \description{
   This is usefull for debugging to know what function has

@@ -1,0 +1,16 @@
+\name{Table1}
+\alias{Table1}
+\title{Create a table of descriptives of a dataset.}
+\usage{
+  Table1(formula, data)
+}
+\arguments{
+  \item{formula}{a formula description of the table.}
+
+  \item{data}{a data.frame or environment to extract the
+  data from.}
+}
+\description{
+  Create a table of descriptives of a dataset.
+}
+

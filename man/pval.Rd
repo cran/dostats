@@ -1,0 +1,29 @@
+\name{pval}
+\alias{pval}
+\title{Extract a p-value fomr a test result.}
+\usage{
+  pval(x, extended = F, ...)
+}
+\arguments{
+  \item{x}{a testing result object}
+
+  \item{extended}{should an extended result be given or a
+  single p-value.}
+
+  \item{...}{extra agruments}
+}
+\value{
+  either a single value (\code{extended=FALSE})
+  representing the p-value of the test or a single row.
+  \link{data.frame} object that also incldues extra
+  information such as
+}
+\description{
+  Extract a p-value fomr a test result.
+}
+\details{
+  This is a generic helper function for extracting p values
+  from objects. The idea being to extract the overall
+  p-value for the model that can be interpreted simply.
+}
+

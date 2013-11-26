@@ -24,31 +24,32 @@
 # dostats. If not, see http://www.gnu.org/licenses/.
 # 
 }###############################################################################
-wrap_function <- function(symb, args, envir, add...=TRUE){
+wrap_function <- function(symb, args, envir, attrs=NULL){
 #' @param symb symbolic name of function
 #' @param args pairlist of arguments to use
 #' @param envir the environment for the function
-#' @param add... add a ... argument
+#' @param attrs attributes to carry forward
     newargs <- args
     for(a in setdiff(names(newargs), '...')) {
         newargs[[a]] <- as.name(a)
     }
     wdots <- names(newargs)=='...'
-    if(any(wdots)){
     newargs[wdots] <- list(as.symbol('...'))
     names(newargs)[wdots] <- ''
-    } else if(add...){
-        newargs <- append(newargs, list(as.symbol('...')))
-    }
     c1 <- as.call(append(list(symb), as.list(newargs)))
     c2 <- as.call(c(as.name('{'), (c1)))
-    as.function(append(args, list(c2)), envir=envir)
+    newfunction <- as.function(append(args, list(c2)), envir=envir)
+    if(!is.null(attrs))
+        attributes(newfunction) <- attrs
+    return(newfunction)
 }
 
-#'  Call with arguments
+#'  Call with arguments.
+#' 
 #'  @param f a function
 #'  @param ... extra arguments
-#'  @param envir the environment for the function.
+#'  @param args alternate way to provide arguments as a pairlist.
+#'  @param envir environment to use for the function.
 #' 
 #'  @return a function that takes 1 argument and calls f with the 
 #'  single argument and the additional \code{...} appended.
@@ -56,34 +57,26 @@ wrap_function <- function(symb, args, envir, add...=TRUE){
 #'  @keywords utilities, misc
 #'  @examples 
 #'  mean2 <- wargs(mean, na.rm=TRUE)
-wargs <- function(f, ..., envir = parent.frame()){
+wargs <- function(f, ..., args=pairlist(...), envir = parent.frame()){
     symb <- substitute(f)
-    args <- pairlist(...)
-    af   <- formals(f)
-    wdots <- names(af) == '...'
-    arg.specified <- sapply(af, is.null)
-    arg.is.explicit <- 
-        Reduce(`&&`, !arg.specified, accumulate=T) & !arg.specified | wdots
-    af <- af[arg.is.explicit]
+    af   <- formals(base::args(f))
     new.args <- c(af[setdiff(names(af), names(args))], args)
-    wrap_function(symb, new.args, envir)
+    wrap_function(symb, new.args, envir, attrs = attributes(f))
 }
 
 
 
-#' create a function that redirects to the named function.
+#' Create a function that redirects to the named function.
 #' 
 #' This is usefull for debugging to know what function has been called 
 #' form within do.call or plyr functions.
 #' 
 #' @param f a function to wrap a call around
-#' @param envir  the environment to use for the function
-#' @param only... wrap only with a ... argument
-#' 
+#' @param envir environment to use for the function.
+#'
 #' @export
-redirf <- function(f, envir=parent.frame(), only...=FALSE){
+redirf <- function(f, envir=parent.frame()){
     symb <- substitute(f)
-    args <- if(only...) alist(...=) else formals(f)
+    args <- formals(f)
     wrap_function(symb, args, envir)
 }
-
