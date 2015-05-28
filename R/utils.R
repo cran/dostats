@@ -23,11 +23,26 @@
 # 
 }###############################################################################
 
+
+#' @rdname head-tail-utils.Rd
+#' @name first
+#' @title Head/Tail shortcuts
+#' 
+#' @description
+#' Shortcuts for \code{head(x,1)} and \code{tail(x, 1)}
+#' 
+#' @param x   vector object
+#' @param ... passed on to head or tail
+#' @param n   the new number to take of only one.
+#' 
+#' @export
 first <- wargs(head, n=1)
+#' @rdname head-tail-utils.Rd
+#' @export
 last <- wargs(tail, n=1)
 
 is_uniform <- function(x){
-    all(laply(x, isTRUE %.% all.equal, x[[1]]))
+    all(sapply(x, isTRUE %.% all.equal, x[[1]]))
 }
 
 #' List rows of a data frame in a list.
@@ -35,7 +50,12 @@ is_uniform <- function(x){
 #' @param d a data.frame
 #' 
 #' @export
-listrows <- function(d){mlply(d, list)}
+listrows <- function(d){
+    FUN <- data.frame
+    dots <- as.list(d)
+    MoreArgs <- list(stringsAsFactors=FALSE)
+    .mapply(data.frame, dots, MoreArgs)
+}
 
 #' Make a helper ID counter
 #' 
